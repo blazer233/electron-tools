@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #2e3338;
+    border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #202225;
+    border-radius: 8px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+}
+
+*::selection {
+    background: #06CA91;
+}
+
+a {
+    text-decoration: none;
+    color: #06CA91;
+    transition: 250ms color;
+}
+
+.selectable {
+    user-select: text;
+    -webkit-user-drag: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ffffff;
+}
+
+mark {
+    background: #2E3136;
+    border-radius: 5px;
+    padding: 4px 6px;
+    font-size: inherit;
+
+    color: #8E9297;
+}
+
+em {
+    text-decoration: none;
+    font-style: normal;
+
+    color: #06CA91;
+}
+
+
+#app {
+    height: 100vh;
+
+    color: #ffffff;
+}
+
+html {
+    line-height: 1.5715;
+}
+
+body {
+    font-size: 14px;
+
+    background-color: #2E3136;
+
+    color: #ffffff;
+
+
+}
+
+body.bx {
+    transform: translateY(1.5px);
+    margin-right: 3px;
+}
+
+.drag {
+    -webkit-app-region: drag
+}
+
+.drag>div {
+    -webkit-app-region: no-drag;
+}
+
+.control-btn.t-button:hover {
+    background-color: #36393F;
+}
+
+.t-breadcrumb>.t-breadcrumb__item {
+    color: #fff !important;
+}

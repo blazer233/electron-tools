@@ -1,0 +1,14 @@
+@font-face {
+    src: url('./fonts/Aquatico/Aquatico-Regular.woff2');
+    font-family: 'Aquatico';
+    font-weight: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
+}
