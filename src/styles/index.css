@@ -102,3 +102,36 @@ body.bx {
 .t-breadcrumb>.t-breadcrumb__item {
     color: #fff !important;
 }
+.mlist {
+    transition: background-color 0.2s linear;
+}
+
+.mlist:hover {
+    background-color: #FFA500;
+}
+
+.checkbox-b>.t-checkbox {
+    display: block;
+    width: 100%;
+}
+
+.checkbox-b>.t-checkbox>.t-checkbox__label {
+    width: 90%;
+}
+
+.t-tabs__nav-item-text-wrapper {
+    color: #e2cbcb;
+}
+
+.t-tabs__nav-item-text-wrapper:hover {
+    background-color: transparent;
+}
+
+.t-tabs__nav-item:hover {
+    background-color: transparent !important;
+}
+
+.t-collapse-panel__content {
+
+    background-color: #36393F;
+}

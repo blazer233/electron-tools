@@ -11,6 +11,11 @@ const electronContext: ElectronRendererContext = {
   checkForUpdate: () => ipcRenderer.send('checkForUpdate'),
   quitAndInstall: () => ipcRenderer.send('quitAndInstall'),
 
+  operateVideoDownLoad: action => ipcRenderer.invoke('operateVideoDownLoad', action),
+  operateVideoList: action => ipcRenderer.invoke('operateVideoList', action),
+  operateVideoDel: () => ipcRenderer.invoke('operateVideoDel'),
+  operateVideoLoad: callback => ipcRenderer.on('operateVideoLoad', (_, data) => callback(data)),
+
   getConfig: () => ipcRenderer.invoke('getConfig'),
   setConfig: config => ipcRenderer.invoke('setConfig', config),
 

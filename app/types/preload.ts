@@ -12,6 +12,11 @@ export interface ElectronRendererContext {
   checkForUpdate: () => void;
   quitAndInstall: () => void;
 
+  operateVideoDownLoad: (action: any) => Promise<any>;
+  operateVideoList: (action: any) => Promise<any>;
+  operateVideoLoad: (callback: (data: any) => void) => void;
+  operateVideoDel: () => Promise<any>;
+
   getConfig: () => Promise<ConfigStoreValues>;
   setConfig: (config: ConfigStoreValues) => Promise<ConfigStoreValues>;
 
