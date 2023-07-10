@@ -44,7 +44,6 @@ let timeoutHandle: NodeJS.Timeout;
 
 const SaveButton = ({ form, className, defaultValues, confirmText, useConfirm = false }: SaveButtonProps) => {
   const [invalid, setInvalid] = useState(false);
-  const [confirmVisible, setConfirmVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const values = useWatch({

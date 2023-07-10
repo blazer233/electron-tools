@@ -6,6 +6,7 @@ import path from 'path'
 import ytdl from 'ytdl-core';
 import { controlVideo } from '@app/stores/video';
 import { controlKey } from '@app/stores/key';
+import { configStore } from '@app/stores/config';
 
 
 const cleanFileName = (fileName: string) => {
@@ -43,7 +44,7 @@ const downloadVideo = async (context: any, url: string) => {
   try {
     let starttime: number
     const videoInfo = await ytdl.getInfo(url);
-    const videoFormat = ytdl.chooseFormat(videoInfo.formats, { quality: 'highest' });
+    const videoFormat = ytdl.chooseFormat(videoInfo.formats, { quality: 'highest', filter: 'audioandvideo' });
     const videoStream = ytdl.downloadFromInfo(videoInfo, { format: videoFormat });
     const videoPath = path.join(userHome, `${cleanFileName(videoInfo.videoDetails.title)}.mp4`);
     return new Promise((resolve, reject) => {
@@ -78,7 +79,7 @@ const videoDownLoadModule: ModuleFunction = (context) => {
 
   // 获取下载列表
   ipcMain.handle('operateVideoList', async (_, action) => {
-    console.log(app.getPath('home'))
+    console.log(app.getPath('home'), configStore.path)
     if (action.key) controlKey.set('video', action.key)
     if (!Object.keys(action).length) return controlVideo.get('video') || {}
     if (controlVideo.get('video') && controlVideo.get('video')[action.playlistId]) return { [action.playlistId]: controlVideo.get('video')[action.playlistId] }

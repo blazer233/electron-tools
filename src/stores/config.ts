@@ -4,6 +4,7 @@ import { ConfigStoreValues } from '@app/stores/config';
 
 const appStoreSyncEffect: AtomEffect<ConfigStoreValues> = ({ onSet }) => {
   onSet(newValue => {
+    console.log(newValue, 4242)
     window.electron.setConfig(newValue);
   });
 };

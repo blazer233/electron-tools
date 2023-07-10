@@ -1,5 +1,5 @@
 {
-  "appId": "com.2skydev.templateapp",
+  "appId": "com.blazer233.templateapp",
   "productName": "TemplateApp",
   "protocols": {
     "name": "templateapp",
@@ -10,8 +10,8 @@
   "publish": [
     {
       "provider": "github",
-      "owner": "2skydev",
-      "repo": "electron-vite-react-ts-template"
+      "owner": "blazer233",
+      "repo": "electron-tools"
     }
   ],
   "asar": true,

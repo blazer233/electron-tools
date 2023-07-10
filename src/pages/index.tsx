@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { FC, Key, useState } from 'react';
 import { Button, Input, Form, MessagePlugin, Checkbox, Progress, Dialog, Tabs, Collapse } from 'tdesign-react';
 
-const KEY = 'sAIzaSyCCA6787a5fd-nyqvBszDRdaY2_XZomTSc';
+const KEY = '';
 const Index: FC = () => {
   useBreadcrumbs(['导航栏', '首页']);
   const [percentData, setPercent] = useState<IParamObject>({});

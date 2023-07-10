@@ -58,7 +58,7 @@ const Settings = () => {
             <br />
             <div className='spacing' />
             <a
-              href='https://github.com/2skydev/electron-vite-react-ts-template/releases'
+              href='https://github.com/blazer233/https://github.com/blazer233/electron-tools'
               target='_blank'
               rel='noreferrer'
             >

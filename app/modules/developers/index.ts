@@ -11,9 +11,7 @@ export interface Log {
 }
 
 const DeveloperModule: ModuleFunction = () => {
-  ipcMain.handle('getStorePath', async () => {
-    return configStore.path;
-  });
+  ipcMain.handle('getStorePath', async () => configStore.path);
 
   ipcMain.handle('getLogs', async () => {
     const logs = log.transports.file.readAllLogs();
