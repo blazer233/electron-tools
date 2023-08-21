@@ -38,7 +38,7 @@
     "tdesign-icons-react": "^0.2.4",
     "tdesign-react": "^1.1.12",
     "vite-electron-plugin": "^0.8.2",
-    "ytdl-core": "^4.11.4"
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",

@@ -40,10 +40,10 @@ const getPlaylistVideos = async (action: any) => {
   )];
 }
 // 下载单个视频
-const downloadVideo = async (context: any, url: string) => {
+const downloadVideo = async (context: any, action: string[], index: number) => {
   try {
     let starttime: number
-    const videoInfo = await ytdl.getInfo(url);
+    const videoInfo = await ytdl.getInfo(action[index]);
     const videoFormat = ytdl.chooseFormat(videoInfo.formats, { quality: 'highest', filter: 'audioandvideo' });
     const videoStream = ytdl.downloadFromInfo(videoInfo, { format: videoFormat });
     const videoPath = path.join(userHome, `${cleanFileName(videoInfo.videoDetails.title)}.mp4`);
@@ -63,6 +63,8 @@ const downloadVideo = async (context: any, url: string) => {
           estimated: estimatedDownloadTime.toFixed(2),
           spend: downloadedMinutes.toFixed(2),
           title: videoInfo.videoDetails.title,
+          index,
+          action,
         });
       });
       videoStream.on('end', () => context.window.webContents.send('operateVideoLoad', {}));
@@ -96,7 +98,7 @@ const videoDownLoadModule: ModuleFunction = (context) => {
     const info = []
     console.log(action, 4242424)
     for (let i = 0; i < action.length; i++) {
-      info[i] = await downloadVideo(context, action[i])
+      info[i] = await downloadVideo(context, action, i)
     }
     return info
   });

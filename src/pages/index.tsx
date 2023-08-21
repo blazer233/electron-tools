@@ -177,6 +177,9 @@ const Index: FC = () => {
         body={
           <PanelContent className='mt-12 mb-12' loading={!Object.keys(percentData).length}>
             <div className='at-ellipsis-lines'>名称: {percentData.title}</div>
+            <div className='at-ellipsis-lines'>
+              进度: {percentData.index + 1}/{percentData.action?.length}
+            </div>
             <div className='at-ellipsis-lines'>花费时间: {percentData.spend} min</div>
             <div className='at-ellipsis-lines'>剩余时间: {percentData.estimated} min</div>
             <div className='at-ellipsis-lines'>全部大小: {percentData.content} MB</div>
