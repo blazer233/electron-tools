@@ -17,10 +17,15 @@ const Titlebar: FC = () => {
   } = useRecoilValue(configStore);
   const appControl = (action: AppControlAction) => window.electron.appControl(action);
   return (
-    <div className='flex justify-content-end w-100p h-30 drag'>
+    <div className='flex justify-content-end w-100p h-30 drag fixed t-0 '>
       {(developerMode ? btns : btns.slice(1)).map((i, idx) => (
         <div onClick={appControl.bind(null, i.exc as any)} key={idx}>
-          <Button icon={<IconFont name={i.name} />} variant='text' className='mr-10 c-white control-btn' size='small' />
+          <Button
+            icon={<IconFont name={i.name} />}
+            variant='text'
+            className='mr-10 control-btn z-index-1'
+            size='small'
+          />
         </div>
       ))}
     </div>

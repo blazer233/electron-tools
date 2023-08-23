@@ -1,137 +1,57 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 *::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
+  width: 0px;
+  height: 10px;
 }
 
 *::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 8px;
+  background: transparent;
+  border-radius: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 8px;
-    background-clip: padding-box;
-    border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
 }
 
 *::selection {
-    background: #06CA91;
-}
-
-a {
-    text-decoration: none;
-    color: #06CA91;
-    transition: 250ms color;
+  background: #06ca91;
 }
 
 .selectable {
-    user-select: text;
-    -webkit-user-drag: auto;
+  user-select: text;
+  -webkit-user-drag: auto;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #ffffff;
-}
-
-mark {
-    background: transparent;
-    border-radius: 5px;
-    padding: 4px 6px;
-    font-size: inherit;
-
-    color: #8E9297;
-}
-
-em {
-    text-decoration: none;
-    font-style: normal;
-
-    color: #06CA91;
-}
-
-
-#app {
-    height: 100vh;
-
-    color: #ffffff;
-}
-
-html {
-    line-height: 1.5715;
-}
-
 body {
-    font-size: 14px;
-
-    background-color: #2E3136;
-
-    color: #ffffff;
-
-
-}
-
-body.bx {
-    transform: translateY(1.5px);
-    margin-right: 3px;
+  height: 100%;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .drag {
-    -webkit-app-region: drag
+  -webkit-app-region: drag;
 }
 
-.drag>div {
-    -webkit-app-region: no-drag;
+.drag > div {
+  -webkit-app-region: no-drag;
 }
 
-.control-btn.t-button:hover {
-    background-color: #36393F;
-}
-
-.t-breadcrumb>.t-breadcrumb__item {
-    color: #fff !important;
-}
 .mlist {
-    transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
 }
 
 .mlist:hover {
-    background-color: #FFA500;
+  background-color: #ffa500;
 }
 
-.checkbox-b>.t-checkbox {
-    display: block;
-    width: 100%;
-}
-
-.checkbox-b>.t-checkbox>.t-checkbox__label {
-    width: 90%;
-}
-
-.t-tabs__nav-item-text-wrapper {
-    color: #e2cbcb;
-}
-
-.t-tabs__nav-item-text-wrapper:hover {
-    background-color: transparent;
-}
-
-.t-tabs__nav-item:hover {
-    background-color: transparent !important;
-}
-
-.t-collapse-panel__content {
-
-    background-color: #36393F;
+.checkbox-b > .t-checkbox {
+  display: block;
+  width: 100%;
 }

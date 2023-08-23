@@ -1,11 +1,6 @@
 export const mainMenus = [
   {
     icon: 'bx-home-alt-2',
-    link: '/',
-    text: '首页',
-  },
-  {
-    icon: 'bx-home-alt-2',
     link: '/youtube',
     text: 'Youtube视频下载',
   },

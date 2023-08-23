@@ -1,5 +1,4 @@
 import { PanelContent } from '@/components/Panel';
-import { useBreadcrumbs } from '@/hooks/useBreadcrumbs';
 import { useMount, useRequest } from 'ahooks';
 import dayjs from 'dayjs';
 import { FC, Key, useState } from 'react';
@@ -7,7 +6,6 @@ import { Button, Input, Form, MessagePlugin, Checkbox, Progress, Dialog, Tabs, C
 
 const KEY = '';
 const Index: FC = () => {
-  useBreadcrumbs(['导航栏', '首页']);
   const [percentData, setPercent] = useState<IParamObject>({});
   const [videoDataList, setVideo] = useState<any>({});
   const [choose, setChoose] = useState<IParamObject>({});
@@ -49,7 +47,7 @@ const Index: FC = () => {
             label: '单视频下载',
             value: 1,
             panel: (
-              <div className='mt-12'>
+              <div className='mt-60 flex justify-content-center'>
                 <Form layout='inline' onSubmit={onSubmit}>
                   <Form.FormItem name='videoId' rules={[{ required: true, type: 'warning' }]} className='w-300'>
                     <Input placeholder='请输入视频URL' clearable />
@@ -103,16 +101,16 @@ const Index: FC = () => {
                     <Button content='初始化' className='ml-12' onClick={delRun} loading={delLoading} />
                   </Form.FormItem>
                 </Form>
-                <div className='mt-20 c-white'>
+                <div className='mt-20 '>
                   <PanelContent loading={loading}>
-                    <Collapse expandOnRowClick borderless className='bg-transparent c-white'>
+                    <Collapse expandOnRowClick borderless className='bg-transparent '>
                       {Object.keys(videoDataList)?.map((i, index) => (
                         <Panel
                           key={index}
-                          className='mb-12 bg-transparent c-white'
+                          className='mb-12 bg-transparent '
                           header={
                             <div className='flex align-items-center ' title={videoDataList[i].description}>
-                              <div className='w-6 h-6 radius-50p mr-10' style={{ backgroundColor: '#2BA471' }}></div>
+                              <div className='w-6 h-6 radius-50p mr-10'></div>
                               <div className='at-ellipsis-lines'>
                                 {videoDataList[i].title} (List：{i})
                               </div>
@@ -132,7 +130,7 @@ const Index: FC = () => {
                                 options={
                                   [
                                     {
-                                      label: <div className='ml-21 c-white'>全选</div>,
+                                      label: <div className='ml-21 '>全选</div>,
                                       checkAll: true,
                                     },
                                   ].concat(
@@ -141,7 +139,7 @@ const Index: FC = () => {
                                       label: (
                                         <div
                                           key={idx}
-                                          className='w-100p c-white w-100p flex justify-content-between align-items-center mr-8'
+                                          className='w-100p  w-100p flex justify-content-between align-items-center mr-8'
                                         >
                                           <div className='flex-1 at-ellipsis-lines'>{it.title}</div>
                                           <div className=''>

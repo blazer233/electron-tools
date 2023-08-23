@@ -1,4 +1,4 @@
-import RenderApp from './pages/main';
+import RenderApp from './pages/Layout';
 import './styles/atom.css';
 import './styles/index.css';
 import { ElectronRendererContext } from '@app/types/preload';
@@ -17,7 +17,7 @@ declare global {
   }
 }
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById('app') as HTMLElement).render(
   <RecoilRoot>
     <BrowserRouter basename={''}>
       <RenderApp />
