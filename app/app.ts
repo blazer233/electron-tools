@@ -75,8 +75,8 @@ class AppContext {
     }
 
     this.window = new BrowserWindow({
-      width: 1800,
-      height: 1000,
+      width: 1000,
+      height: 800,
       backgroundColor: '#36393F',
       darkTheme: true,
       show: false,

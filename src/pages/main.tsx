@@ -4,9 +4,7 @@ import { updateStore } from '@/stores/update';
 import { colors, sizes } from '@/styles/themes';
 import { useMount } from 'ahooks';
 import { useMemo } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { ThemeProvider } from 'styled-components';
 
 type Sizes = typeof sizes;
 type Colors = typeof colors;
@@ -46,14 +44,10 @@ const AppInner = () => {
   useMount(bootstrap);
 
   return (
-    <ThemeProvider theme={styledTheme}>
-      <div id='app'>
-        <Titlebar />
-        <Layout>
-          <Outlet />
-        </Layout>
-      </div>
-    </ThemeProvider>
+    <div id='app'>
+      <Titlebar />
+      <Layout />
+    </div>
   );
 };
 

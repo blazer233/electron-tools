@@ -1,9 +1,7 @@
-import { SaveButtonStyled } from './styled';
 import { UseCustomUseFormReturn } from '@/hooks/useCustomForm';
 import clsx from 'clsx';
 import deepEqual from 'fast-deep-equal';
-import { AnimatePresence } from 'framer-motion';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState, Fragment } from 'react';
 import { useWatch } from 'react-hook-form';
 import { Button, Space } from 'tdesign-react';
 
@@ -14,31 +12,6 @@ export interface SaveButtonProps {
   confirmText?: ReactNode;
   useConfirm?: boolean;
 }
-
-const animation = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-
-  animate: {
-    opacity: 1,
-    y: 0,
-  },
-
-  exit: {
-    opacity: 0,
-    y: 100,
-    transition: {
-      ease: 'backIn',
-    },
-  },
-
-  transition: {
-    duration: 0.3,
-    ease: 'backOut',
-  },
-};
 
 let timeoutHandle: NodeJS.Timeout;
 
@@ -75,9 +48,9 @@ const SaveButton = ({ form, className, defaultValues, confirmText, useConfirm = 
   }, [invalid]);
 
   return (
-    <AnimatePresence>
+    <Fragment>
       {!isEqual && (
-        <SaveButtonStyled className={clsx('SaveButton', className, { invalid })} key='SaveButton' {...animation}>
+        <div className={clsx('SaveButton', className, { invalid })} key='SaveButton'>
           <span>有未保存的更改！</span>
           <Space>
             <Button variant='outline' disabled={loading} onClick={() => form.reset(defaultValues)}>
@@ -87,9 +60,9 @@ const SaveButton = ({ form, className, defaultValues, confirmText, useConfirm = 
               保存更改
             </Button>
           </Space>
-        </SaveButtonStyled>
+        </div>
       )}
-    </AnimatePresence>
+    </Fragment>
   );
 };
 

@@ -10,12 +10,12 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: #2e3338;
+    background: transparent;
     border-radius: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #202225;
+    background: transparent;
     border-radius: 8px;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -46,7 +46,7 @@ h6 {
 }
 
 mark {
-    background: #2E3136;
+    background: transparent;
     border-radius: 5px;
     padding: 4px 6px;
     font-size: inherit;
