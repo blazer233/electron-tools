@@ -42,16 +42,7 @@ body {
 .drag > div {
   -webkit-app-region: no-drag;
 }
-
-.mlist {
-  transition: background-color 0.2s linear;
+.checkbox-youtube .t-checkbox {
+  min-width: 100%;
 }
-
-.mlist:hover {
-  background-color: #ffa500;
-}
-
-.checkbox-b > .t-checkbox {
-  display: block;
-  width: 100%;
-}
+ 

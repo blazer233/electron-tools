@@ -121,7 +121,8 @@ const Index: FC = () => {
                             {videoDataList[i]?.list?.length ? (
                               <Checkbox.Group
                                 value={choose[i]}
-                                className='checkbox-b'
+                                className='checkbox-youtube'
+                                style={{ gap: 'unset' }}
                                 onChange={(v) => {
                                   choose[i] = v;
                                   console.log(choose);
@@ -130,21 +131,16 @@ const Index: FC = () => {
                                 options={
                                   [
                                     {
-                                      label: <div className='ml-21 '>全选</div>,
+                                      label: <div className='ml-21'>全选</div>,
                                       checkAll: true,
                                     },
                                   ].concat(
                                     videoDataList[i].list?.map((it: IParamObject, idx: Key) => ({
                                       value: it.url,
                                       label: (
-                                        <div
-                                          key={idx}
-                                          className='w-100p  w-100p flex justify-content-between align-items-center mr-8'
-                                        >
+                                        <div key={idx} className='pt-20 mr-8'>
                                           <div className='flex-1 at-ellipsis-lines'>{it.title}</div>
-                                          <div className=''>
-                                            发布时间：{dayjs(it.publishTime).format('YYYY-MM-DD HH:mm')}
-                                          </div>
+                                          发布时间：{dayjs(it.publishTime).format('YYYY-MM-DD HH:mm')}
                                         </div>
                                       ),
                                     })),
