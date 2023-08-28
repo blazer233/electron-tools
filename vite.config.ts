@@ -14,7 +14,7 @@ export default defineConfig({
     react(),
     checker({}),
     tsconfigPaths(),
-    visualizer(), // 分析文件大小
+    // visualizer(), // 分析文件大小
     electron({
       include: ['app'],
       plugins: [
