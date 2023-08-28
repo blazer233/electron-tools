@@ -1,48 +1,63 @@
-import SaveButton from '@/components/SaveButton';
-// import UpdateStatus from '@/components/UpdateStatus';
-import { useBreadcrumbs } from '@/hooks/useBreadcrumbs';
-import { useCustomForm } from '@/hooks/useCustomForm';
-import { configStore } from '@/stores/config';
-import { updateStore } from '@/stores/update';
-import { Controller } from 'react-hook-form';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { Switch } from 'tdesign-react';
+import { useAllStore } from '@/stores';
+import { useBoolean } from 'ahooks';
+import dayjs from 'dayjs';
+import { useEffect } from 'react';
+import { Button, Switch } from 'tdesign-react';
 
 const Settings = () => {
-  useBreadcrumbs(['设置', '系统设置']);
-  const [config, setConfig] = useRecoilState(configStore);
-  const { version, status } = useRecoilValue(updateStore);
-  const form = useCustomForm({
-    defaultValues: config.general,
-    onSubmit: (values) => {
-      setConfig({
-        ...config,
-        general: values,
-      });
-    },
-  });
+  const [loading, { setTrue, setFalse }] = useBoolean(false);
+  const { config, setConfig, version, status } = useAllStore();
 
+  const handleUpdate = () => {
+    setTrue();
+    status?.event === 'update-downloaded' ? window.electron.quitAndInstall() : window.electron.quitAndInstall();
+  };
+  useEffect(() => {
+    status?.event === 'download-progress' ||
+    status?.event === 'checking-for-update' ||
+    status?.event === 'update-available'
+      ? setTrue()
+      : setFalse();
+  }, [status]);
+
+  const STATUS_BTN: Record<string, string> = {
+    error: `检查更新时出错，检查更新`,
+    'checking-for-update': '正在检查更新 ...',
+    'update-available': '有更新。正在下载...',
+    'update-not-available': `最新版本 ${dayjs(status?.time).fromNow()}`,
+    'download-progress': `${Number(status?.data.percent).toFixed(1)}% 正在下载...`,
+    'update-downloaded': '已下载更新，重新启动应用程序时，将应用更新，点击立即安装',
+  };
   return (
     <div>
-      <div className=''>设置是否启用开发者模式。</div>
-      <Controller
-        name='developerMode'
-        control={form.control}
-        render={({ field }) => (
-          <Switch
-            defaultValue={field.value}
-            onChange={(checked) => field.onChange(checked)}
-            label={[<i className='bx bx-code-alt' />, <i className='bx bx-x' />]}
-          />
-        )}
+      <Switch
+        size='large'
+        label={['关闭开发者模式', '启动开发者模式']}
+        defaultValue={config?.general.developerMode}
+        onChange={(developerMode) => setConfig({ general: { developerMode } })}
       />
-      <div className=''>应用程序版本</div>
-      <div className=''>您可以查看当前的应用程序版本</div>
-      <div className=''>您可以通过以下链接查看更改</div>
-      <div className=''>https://github.com/blazer233/https://github.com/blazer233/electron-tools</div>
-      {/* <UpdateStatus version={version} status={status} /> */}
-
-      <SaveButton defaultValues={config.general} form={form} />
+      <div className='flex flex-column mt-24' style={{ gap: '12px' }}>
+        <div className='font-bold border-bottom-2-dfe2eb pb-12 flex align-items-center'>
+          <span className='flex-1'> 应用程序版本: v{version}</span>
+          <Button
+            content={STATUS_BTN[status?.event] || `v${version}  检查更新`}
+            size='small'
+            className='mr-24'
+            onClick={handleUpdate}
+            loading={loading}
+          />
+        </div>
+        <span className='mr-24 text-right c-333333'>
+          您可以通过点击
+          <span
+            className='c-blue cursor-pointer mr-6 ml-6'
+            onClick={() => window.electron.openExternal('https://github.com/blazer233/electron-tools')}
+          >
+            链接
+          </span>
+          查看更改
+        </span>
+      </div>
     </div>
   );
 };

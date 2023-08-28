@@ -4,6 +4,7 @@ import { autoUpdater } from 'electron-updater';
 
 import { ModuleFunction } from '@app/app';
 import { updateStore } from '@app/stores/update';
+import path from 'path';
 
 export interface UpdateStatus {
   event: UpdateEvent;

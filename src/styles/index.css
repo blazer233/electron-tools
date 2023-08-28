@@ -34,7 +34,9 @@ body {
   font-size: 14px;
   color: #ffffff;
 }
-
+#app {
+  height: 100%;
+}
 .drag {
   -webkit-app-region: drag;
 }
@@ -45,4 +47,3 @@ body {
 .checkbox-youtube .t-checkbox {
   min-width: 100%;
 }
- 

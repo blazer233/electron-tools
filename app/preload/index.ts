@@ -8,9 +8,9 @@ const electronContext: ElectronRendererContext = {
   initlizeUpdater: () => ipcRenderer.send('initlizeUpdater'),
   appControl: action => ipcRenderer.send('appControl', action),
   openExternal: link => ipcRenderer.send('openExternal', link),
-  checkForUpdate: () => ipcRenderer.send('checkForUpdate'),
   quitAndInstall: () => ipcRenderer.send('quitAndInstall'),
 
+  checkForUpdate: () => ipcRenderer.send('checkForUpdate'),
   operateVideoDownLoad: action => ipcRenderer.invoke('operateVideoDownLoad', action),
   operateVideoList: action => ipcRenderer.invoke('operateVideoList', action),
   operateVideoDel: () => ipcRenderer.invoke('operateVideoDel'),

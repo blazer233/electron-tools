@@ -6,14 +6,14 @@ export const mainMenus = [
   },
   {
     icon: 'bx-cog',
-    link: '/settings',
+    link: '/setting',
     text: '系统设置',
   },
 ];
 export const devMenus = [
   {
     icon: 'bx-code-alt',
-    link: '/settings/developers',
+    link: '/developer',
     text: '开发者选项',
   }
 ]; 

@@ -77,7 +77,7 @@ class AppContext {
     this.window = new BrowserWindow({
       width: 1000,
       height: 800,
-      show: false,
+      show: true,// 可能造成页面白屏
       autoHideMenuBar: true,
       frame: false,
       icon: this.ICON,
@@ -94,10 +94,6 @@ class AppContext {
       await this.window.loadURL(this.DEV_URL);
       this.window.webContents.openDevTools();
     }
-
-    this.window.on('ready-to-show', () => {
-      this.window?.show();
-    });
   }
 
   async createTray() {
