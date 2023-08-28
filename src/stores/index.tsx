@@ -11,7 +11,11 @@ export interface ConfigStoreValues {
 export const UseConfig = createContainer(() => {
   const [config, setConfig] = React.useState<ConfigStoreValues>();
   useRequest(window.electron?.getConfig as any, { onSuccess: setConfig });
-  useRequest(() => window.electron?.setConfig(config as any), { refreshDeps: [config], ready: !!config });
+  useRequest(() => window.electron?.setConfig(config as any), {
+    refreshDeps: [config],
+    ready: !!config,
+    onSuccess: (res) => console.log(res, 442211),
+  });
   return { config, setConfig };
 });
 

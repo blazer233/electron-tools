@@ -5,8 +5,10 @@ import storeRootArr, { reduceProvider } from '@/stores/index';
 import { ElectronRendererContext } from '@app/types/preload';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Loading } from 'tdesign-react';
 import 'tdesign-react/es/style/index.css';
 
 dayjs.extend(relativeTime);
@@ -20,11 +22,13 @@ declare global {
 const Provider = reduceProvider(storeRootArr);
 
 const App = () => (
-  <Provider>
-    <BrowserRouter basename={''}>
-      <RenderApp />
-    </BrowserRouter>
-  </Provider>
+  <BrowserRouter>
+    <Provider>
+      <Suspense fallback={<Loading size='large' className='fixed t-50p l-50p' />}>
+        <RenderApp />
+      </Suspense>
+    </Provider>
+  </BrowserRouter>
 );
 
 createRoot(document.getElementById('app') as HTMLElement).render(<App />);
