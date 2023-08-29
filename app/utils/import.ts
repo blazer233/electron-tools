@@ -1,4 +1,6 @@
 import glob from 'glob';
+import { app } from 'electron';
+
 import { resolve as pathResolve } from 'path';
 
 export interface GlobImportOptions extends glob.IOptions {
@@ -12,3 +14,7 @@ export const globImport = (pattern: string, options: GlobImportOptions) =>
       resolve(paths.map(path => require(pathResolve(options.cwd, path))));
     });
   });
+
+export const promiseFn = (name: any) => {
+  return new Promise((resolve) => app.on(name, resolve));
+}

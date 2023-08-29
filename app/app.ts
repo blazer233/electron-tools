@@ -1,6 +1,7 @@
 import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron';
 
 import { join } from 'path';
+import { configStore } from './stores/config';
 
 import { globImport } from './utils/import';
 
@@ -77,7 +78,7 @@ class AppContext {
     this.window = new BrowserWindow({
       width: 1000,
       height: 800,
-      show: false,// true可能造成页面白屏
+      show: true,// true可能造成页面白屏
       autoHideMenuBar: true,
       frame: false,
       icon: this.ICON,
@@ -86,6 +87,9 @@ class AppContext {
       },
     });
 
+    // this.window.on('ready-to-show', () => {
+    //   this.window?.show();
+    // });
     if (app.isPackaged) {
       this.window.loadFile(this.PROD_LOAD_FILE_PATH, {
         hash: this.PROD_LOAD_FILE_HASH,
@@ -94,8 +98,9 @@ class AppContext {
       await this.window.loadURL(this.DEV_URL);
       this.window.webContents.openDevTools();
     }
-    this.window.on('ready-to-show', () => {
-      this.window?.show();
+    app.on('ready', () => {
+      console.log(app.getPath('downloads'), configStore.store, 11111111)
+      configStore.store.downloadaddress = app.getPath('downloads')
     });
   }
 
@@ -121,6 +126,7 @@ class AppContext {
     const modules = await globImport('./modules/**/index.js', { cwd: __dirname });
 
     await Promise.all(modules.map(({ default: module }) => this.register(module)));
+
   }
 }
 

@@ -13,7 +13,7 @@ const cleanFileName = (fileName: string) => {
   let illegalChars = /[\u{0000}-\u{001f}\\<>:"/|?*]/gu;
   return fileName.replace(illegalChars, '');
 }
-const userHome = app.getPath('home');
+const userHome = () => configStore.store.downloadaddress || app.getPath('home');
 
 export interface Log {
   size: number;
@@ -46,7 +46,8 @@ const downloadVideo = async (context: any, action: string[], index: number) => {
     const videoInfo = await ytdl.getInfo(action[index]);
     const videoFormat = ytdl.chooseFormat(videoInfo.formats, { quality: 'highest', filter: 'audioandvideo' });
     const videoStream = ytdl.downloadFromInfo(videoInfo, { format: videoFormat });
-    const videoPath = path.join(userHome, `${cleanFileName(videoInfo.videoDetails.title)}.mp4`);
+    const videoPath = path.join(userHome(), `${cleanFileName(videoInfo.videoDetails.title)}.mp4`);
+    console.log(videoPath, 'videoPath')
     return new Promise((resolve, reject) => {
       videoStream.pipe(fs.createWriteStream(videoPath))
         .on('finish', () => resolve(videoInfo.videoDetails.title))
@@ -81,12 +82,10 @@ const videoDownLoadModule: ModuleFunction = (context) => {
 
   // 获取下载列表
   ipcMain.handle('operateVideoList', async (_, action) => {
-    console.log(app.getPath('home'), configStore.path)
     if (action.key) controlKey.set('video', action.key)
     if (!Object.keys(action).length) return controlVideo.get('video') || {}
     if (controlVideo.get('video') && controlVideo.get('video')[action.playlistId]) return { [action.playlistId]: controlVideo.get('video')[action.playlistId] }
     const [title, list] = await getPlaylistVideos(action)
-    // console.log(list, 424)
     const videos = controlVideo.get('video') || {}
     videos[action.playlistId] = { title, list }
     controlVideo.set('video', videos)

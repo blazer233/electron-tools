@@ -3,12 +3,12 @@ import { devMenus, mainMenus } from '@/config';
 import { useAllStore } from '@/stores';
 import { useMount } from 'ahooks';
 import React, { createElement, Suspense, FC } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { IconFont } from 'tdesign-icons-react';
 import { Layout, Menu, Loading } from 'tdesign-react';
 
 
-const { Footer, Aside } = Layout;
+const { Aside } = Layout;
 const { MenuItem } = Menu;
 export const loadingFunc = <Loading size='large' className='fixed t-50p l-50p' />;
 
@@ -33,9 +33,8 @@ export const routerMapTemp = [
 const AppInner = () => {
   const { setStatus, config } = useAllStore();
   const { pathname } = useLocation();
-  const store = useAllStore();
+  const navigate = useNavigate();
   const { Content } = Layout;
-  console.log(store, 313);
   const bootstrap = async () => {
     window.electron.onUpdate((event, data) => {
       setStatus({ event, data, time: new Date().getTime() });
@@ -43,15 +42,20 @@ const AppInner = () => {
     window.electron.initlizeUpdater();
   };
   useMount(bootstrap);
-  const allMenu = config?.general.developerMode ? mainMenus.concat(devMenus) : mainMenus;
+  const allMenu = config?.developerMode ? mainMenus.concat(devMenus) : mainMenus;
   return (
     <React.Fragment>
       <Titlebar />
       <Layout className='w-100p h-100p' style={{ minHeight: '770px' }}>
-        <Aside width='180px'>
+        <Aside width='200px'>
           <Menu style={{ width: '100%', height: '100%', boxShadow: 'none' }}>
             {allMenu.map((i, idx) => (
-              <MenuItem key={idx} value={i.text} icon={<IconFont name={i.icon} size='small' />} href={i.link}>
+              <MenuItem
+                key={idx}
+                value={i.text}
+                icon={<IconFont name={i.icon} size='small' />}
+                onClick={() => navigate(i.link)}
+              >
                 {i.text}
               </MenuItem>
             ))}

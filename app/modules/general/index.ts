@@ -1,4 +1,4 @@
-import { ipcMain, shell } from 'electron';
+import { app, ipcMain, shell } from 'electron';
 
 import { ModuleFunction } from '@app/app';
 import { configStore } from '@app/stores/config';
@@ -40,11 +40,12 @@ const GeneralModule: ModuleFunction = context => {
     return shell.openExternal(link);
   });
 
-  ipcMain.handle('getConfig', async () => {
-    return configStore.store;
-  });
+  ipcMain.on('openPath', async (_, link) => shell.openPath(link));
 
-  ipcMain.handle('setConfig', async (e, config) => {
+  ipcMain.handle('getConfig', async () => configStore.store);
+
+  ipcMain.handle('setConfig', async (e, config = {}) => {
+    config.downloadaddress = config.downloadaddress || app.getPath('downloads')
     return (configStore.store = config);
   });
 };

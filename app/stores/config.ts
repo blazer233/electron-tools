@@ -1,17 +1,15 @@
 import Store from 'electron-store';
 
 export interface ConfigStoreValues {
-  general: {
-    developerMode: boolean;
-  };
+  developerMode: boolean;
+  downloadaddress: string
 }
-
 export const configStore = new Store<ConfigStoreValues>({
   name: 'config',
   accessPropertiesByDotNotation: false,
   defaults: {
-    general: {
-      developerMode: false,
-    },
+    developerMode: false,
+    downloadaddress: '',
   },
 });
+

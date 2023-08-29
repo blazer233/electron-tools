@@ -8,6 +8,7 @@ const electronContext: ElectronRendererContext = {
   initlizeUpdater: () => ipcRenderer.send('initlizeUpdater'),
   appControl: action => ipcRenderer.send('appControl', action),
   openExternal: link => ipcRenderer.send('openExternal', link),
+  openPath: link => ipcRenderer.send('openPath', link),
   quitAndInstall: () => ipcRenderer.send('quitAndInstall'),
 
   checkForUpdate: () => ipcRenderer.send('checkForUpdate'),

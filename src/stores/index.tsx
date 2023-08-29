@@ -4,9 +4,7 @@ import React from 'react';
 
 // 状态管理
 export interface ConfigStoreValues {
-  general: {
-    developerMode: boolean;
-  };
+  developerMode: boolean;
 }
 export const UseConfig = createContainer(() => {
   const [config, setConfig] = React.useState<ConfigStoreValues>();
@@ -14,7 +12,7 @@ export const UseConfig = createContainer(() => {
   useRequest(() => window.electron?.setConfig(config as any), {
     refreshDeps: [config],
     ready: !!config,
-    onSuccess: (res) => console.log(res, 442211),
+    onSuccess: (res) => console.log(res, config, 'UseConfig'),
   });
   return { config, setConfig };
 });

@@ -9,6 +9,7 @@ export interface ElectronRendererContext {
   initlizeUpdater: () => void;
   appControl: (action: AppControlAction) => void;
   openExternal: (link: string) => void;
+  openPath: (link: string) => void;
   checkForUpdate: () => void;
   quitAndInstall: () => void;
 
