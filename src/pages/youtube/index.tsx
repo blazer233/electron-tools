@@ -1,7 +1,9 @@
 import { PanelContent } from '@/components/Panel';
+import { useAllStore } from '@/stores';
 import { useMount, useRequest } from 'ahooks';
 import dayjs from 'dayjs';
 import { FC, Key, useState } from 'react';
+import { IconFont } from 'tdesign-icons-react';
 import { Button, Input, Form, MessagePlugin, Checkbox, Progress, Dialog, Tabs, Collapse } from 'tdesign-react';
 
 const KEY = '';
@@ -10,6 +12,8 @@ const Index: FC = () => {
   const [videoDataList, setVideo] = useState<any>({});
   const [choose, setChoose] = useState<IParamObject>({});
   const { Panel } = Collapse;
+  const { config } = useAllStore();
+
   window.electron.operateVideoLoad(setPercent);
   const { run: delRun, loading: delLoading } = useRequest(window.electron.operateVideoDel, {
     manual: true,
@@ -39,7 +43,14 @@ const Index: FC = () => {
   };
   useMount(run.bind(null, {}));
   return (
-    <>
+    <div className='relative'>
+      <IconFont
+        title='打开文件'
+        name='folder-open'
+        size='16px'
+        className='absolute t-16 l-216 z-index-1 cursor-pointer'
+        onClick={() => window.electron.openPath(config.downloadaddress)}
+      />
       <Tabs
         style={{ backgroundColor: 'inherit' }}
         list={[
@@ -47,7 +58,7 @@ const Index: FC = () => {
             label: '单视频下载',
             value: 1,
             panel: (
-              <div className='mt-60 flex justify-content-center'>
+              <div className='mt-60 flex justify-content-center align-items-center'>
                 <Form layout='inline' onSubmit={onSubmit}>
                   <Form.FormItem name='videoId' rules={[{ required: true, type: 'warning' }]} className='w-300'>
                     <Input placeholder='请输入视频URL' clearable />
@@ -63,7 +74,7 @@ const Index: FC = () => {
                     </Form.FormItem>
                   )}
                   <Form.FormItem>
-                    <Button content='下载视频' type='submit' className='ml-12' loading={lLoading} />
+                    <Button content='下载视频' type='submit' className='ml-12 max-w-unset' loading={lLoading} />
                   </Form.FormItem>
                 </Form>
               </div>
@@ -76,7 +87,7 @@ const Index: FC = () => {
               <div className='mt-12'>
                 <Form layout='inline' onSubmit={onSubmit}>
                   <Form.FormItem name='playlistId' rules={[{ required: true, type: 'warning' }]} className='w-300'>
-                    <Input placeholder='请输入视频URL' clearable />
+                    <Input placeholder='请输入视频list值' clearable />
                   </Form.FormItem>
                   {!Object.keys(videoDataList)?.length && (
                     <Form.FormItem
@@ -102,6 +113,7 @@ const Index: FC = () => {
                   </Form.FormItem>
                 </Form>
                 <div className='mt-20 '>
+                  {' '}
                   <PanelContent loading={loading}>
                     <Collapse expandOnRowClick borderless className='bg-transparent '>
                       {Object.keys(videoDataList)?.map((i, index) => (
@@ -111,9 +123,7 @@ const Index: FC = () => {
                           header={
                             <div className='flex align-items-center ' title={videoDataList[i].description}>
                               <div className='w-6 h-6 radius-50p mr-10'></div>
-                              <div className='at-ellipsis-lines'>
-                                {videoDataList[i].title} (List：{i})
-                              </div>
+                              <div className='at-ellipsis-lines'>{videoDataList[i].title}</div>
                             </div>
                           }
                         >
@@ -182,7 +192,7 @@ const Index: FC = () => {
           </PanelContent>
         }
       />
-    </>
+    </div>
   );
 };
 

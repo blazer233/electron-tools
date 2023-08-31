@@ -21,7 +21,7 @@ const SettingsDevelopers = () => {
       </div>
       {logData && (
         <>
-          <div className='flex align-items-center justify-content-between mr-24'>
+          <div className='flex align-items-center justify-content-between mr-24 mt-24'>
             <div className=''>日志：</div>
             <div className='flex align-items-center'>
               <div className='size mr-12'>

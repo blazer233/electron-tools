@@ -84,7 +84,7 @@ const videoDownLoadModule: ModuleFunction = (context) => {
   ipcMain.handle('operateVideoList', async (_, action) => {
     if (action.key) controlKey.set('video', action.key)
     if (!Object.keys(action).length) return controlVideo.get('video') || {}
-    if (controlVideo.get('video') && controlVideo.get('video')[action.playlistId]) return { [action.playlistId]: controlVideo.get('video')[action.playlistId] }
+    if (controlVideo.get('video')?.[action.playlistId]) return { [action.playlistId]: controlVideo.get('video')[action.playlistId] }
     const [title, list] = await getPlaylistVideos(action)
     const videos = controlVideo.get('video') || {}
     videos[action.playlistId] = { title, list }
@@ -95,7 +95,6 @@ const videoDownLoadModule: ModuleFunction = (context) => {
 
   ipcMain.handle('operateVideoDownLoad', async (_, action) => {
     const info = []
-    console.log(action, 4242424)
     for (let i = 0; i < action.length; i++) {
       info[i] = await downloadVideo(context, action, i)
     }

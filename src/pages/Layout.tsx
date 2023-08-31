@@ -46,7 +46,7 @@ const AppInner = () => {
   return (
     <React.Fragment>
       <Titlebar />
-      <Layout className='w-100p h-100p' style={{ minHeight: '770px' }}>
+      <Layout className='w-100p h-100vh'>
         <Aside width='200px'>
           <Menu style={{ width: '100%', height: '100%', boxShadow: 'none' }}>
             {allMenu.map((i, idx) => (
@@ -72,7 +72,11 @@ const AppInner = () => {
                   <Route
                     key={idx}
                     path={i.path}
-                    element={<div className='pl-12 mt-12'>{createElement(i.element as unknown as FC<{}>)}</div>}
+                    element={
+                      <div className='pl-12 mt-12 h-100vh overflow-y-scroll scrollbar-router'>
+                        {createElement(i.element as unknown as FC<{}>)}
+                      </div>
+                    }
                   />
                 ))}
               </Routes>
