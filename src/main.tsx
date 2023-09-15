@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Loading } from 'tdesign-react';
 import 'tdesign-react/es/style/index.css';
 
@@ -22,13 +22,13 @@ declare global {
 const Provider = reduceProvider(storeRootArr);
 
 const App = () => (
-  <BrowserRouter>
-    <Provider>
-      <Suspense fallback={<Loading size='large' className='fixed t-50p l-50p' />}>
+  <Provider>
+    <Suspense fallback={<Loading size='large' className='fixed t-50p l-50p' />}>
+      <HashRouter>
         <RenderApp />
-      </Suspense>
-    </Provider>
-  </BrowserRouter>
+      </HashRouter>
+    </Suspense>
+  </Provider>
 );
 
 createRoot(document.getElementById('app') as HTMLElement).render(<App />);

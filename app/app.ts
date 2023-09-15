@@ -78,7 +78,7 @@ class AppContext {
     this.window = new BrowserWindow({
       width: 1000,
       height: 800,
-      show: true,// true可能造成页面白屏
+      show: false,
       autoHideMenuBar: true,
       frame: false,
       icon: this.ICON,
@@ -98,8 +98,10 @@ class AppContext {
       await this.window.loadURL(this.DEV_URL);
       this.window.webContents.openDevTools();
     }
+    this.window.on('ready-to-show', () => {
+      this.window?.show();
+    });
     app.on('ready', () => {
-      console.log(app.getPath('downloads'), configStore.store, 11111111)
       configStore.store.downloadaddress = app.getPath('downloads')
     });
   }
