@@ -22,13 +22,13 @@ declare global {
 const Provider = reduceProvider(storeRootArr);
 
 const App = () => (
-  <Provider>
-    <Suspense fallback={<Loading size='large' className='fixed t-50p l-50p' />}>
+  <Suspense fallback={<Loading size='large' className='fixed t-50p l-50p' />}>
+    <Provider>
       <HashRouter>
         <RenderApp />
       </HashRouter>
-    </Suspense>
-  </Provider>
+    </Provider>
+  </Suspense>
 );
 
 createRoot(document.getElementById('app') as HTMLElement).render(<App />);

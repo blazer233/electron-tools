@@ -7,7 +7,6 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { IconFont } from 'tdesign-icons-react';
 import { Layout, Menu, Loading } from 'tdesign-react';
 
-
 const { Aside } = Layout;
 const { MenuItem } = Menu;
 export const loadingFunc = <Loading size='large' className='fixed t-50p l-50p' />;
@@ -46,9 +45,9 @@ const AppInner = () => {
   return (
     <React.Fragment>
       <Titlebar />
-      <Layout className='w-100p h-100vh'>
-        <Aside width='200px'>
-          <Menu style={{ width: '100%', height: '100%', boxShadow: 'none' }}>
+      <Layout className='w-100p h-100vh flex-row flex'>
+        <div className='h-100p z-index-100'>
+          <Menu className={`border-right-2 h-100p`} width='200px'>
             {allMenu.map((i, idx) => (
               <MenuItem
                 key={idx}
@@ -60,8 +59,8 @@ const AppInner = () => {
               </MenuItem>
             ))}
           </Menu>
-        </Aside>
-        <Layout>
+        </div>
+        <Layout className='flex-1 overflow-y-auto'>
           <Content>
             <div className='mt-30 font-bold pl-24 pb-12 border-bottom-2-dfe2eb'>
               {(allMenu.find((i) => i.link === pathname) || {}).text || ''}
@@ -73,7 +72,7 @@ const AppInner = () => {
                     key={idx}
                     path={i.path}
                     element={
-                      <div className='pl-12 mt-12 h-100vh overflow-y-scroll scrollbar-router'>
+                      <div className=' m-24 overflow-y-scroll scrollbar-router'>
                         {createElement(i.element as unknown as FC<{}>)}
                       </div>
                     }
