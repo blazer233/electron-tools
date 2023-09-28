@@ -71,7 +71,7 @@ const downloadVideo = async (context: any, action: string[], index: number) => {
       videoStream.on('end', () => context.window.webContents.send('operateVideoLoad', {}));
     });
   } catch (error) {
-    console.log(error, 444444444444)
+    console.log(error)
   }
 }
 

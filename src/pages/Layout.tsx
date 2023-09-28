@@ -21,6 +21,10 @@ export const routerMapTemp = [
     element: React.lazy(() => import('@/pages/youtube/index')) as unknown as React.ReactNode,
   },
   {
+    path: '/search',
+    element: React.lazy(() => import('@/pages/search/index')) as unknown as React.ReactNode,
+  },
+  {
     path: '/setting',
     element: React.lazy(() => import('@/pages/settings/index')) as unknown as React.ReactNode,
   },
@@ -52,7 +56,7 @@ const AppInner = () => {
               <MenuItem
                 key={idx}
                 value={i.text}
-                icon={<IconFont name={i.icon} size='small' />}
+                icon={<IconFont name={i.icon} size='small' className='mt-6' />}
                 onClick={() => navigate(i.link)}
               >
                 {i.text}

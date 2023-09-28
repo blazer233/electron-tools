@@ -17,6 +17,8 @@ const electronContext: ElectronRendererContext = {
   operateVideoDel: () => ipcRenderer.invoke('operateVideoDel'),
   operateVideoLoad: callback => ipcRenderer.on('operateVideoLoad', (_, data) => callback(data)),
 
+  getFilesName: action => ipcRenderer.invoke('getFilesName', action),
+
   getConfig: () => ipcRenderer.invoke('getConfig'),
   setConfig: config => ipcRenderer.invoke('setConfig', config),
 

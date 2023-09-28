@@ -18,6 +18,8 @@ export interface ElectronRendererContext {
   operateVideoLoad: (callback: (data: any) => void) => void;
   operateVideoDel: () => Promise<any>;
 
+  getFilesName: (action: any) => Promise<any>,
+
   getConfig: () => Promise<ConfigStoreValues>;
   setConfig: (config: ConfigStoreValues) => Promise<ConfigStoreValues>;
 
