@@ -32,6 +32,10 @@ export default defineConfig({
   server: {
     port: 3000,
     strictPort: true,
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+    },
   },
   build: {
     minify: process.env.NODE_ENV === 'production' ? false : 'esbuild',

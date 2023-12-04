@@ -10,6 +10,11 @@ export const mainMenus = [
     text: '快捷搜索',
   },
   {
+    icon: 'file-search',
+    link: '/video',
+    text: 'video转gif',
+  },
+  {
     icon: 'command',
     link: '/setting',
     text: '系统设置',

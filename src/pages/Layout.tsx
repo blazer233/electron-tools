@@ -25,6 +25,10 @@ export const routerMapTemp = [
     element: React.lazy(() => import('@/pages/search/index')) as unknown as React.ReactNode,
   },
   {
+    path: '/video',
+    element: React.lazy(() => import('@/pages/video/index')) as unknown as React.ReactNode,
+  },
+  {
     path: '/setting',
     element: React.lazy(() => import('@/pages/settings/index')) as unknown as React.ReactNode,
   },

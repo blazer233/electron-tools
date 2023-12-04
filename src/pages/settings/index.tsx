@@ -27,7 +27,7 @@ const Settings = () => {
     'checking-for-update': '正在检查更新 ...',
     'update-available': '有更新。正在下载...',
     'update-not-available': `最新版本 ${dayjs(status?.time).fromNow()}`,
-    'download-progress': `${Number(status?.data.percent).toFixed(1)}% 正在下载...`,
+    'download-progress': `${Number(status?.data?.percent).toFixed(1)}% 正在下载...`,
     'update-downloaded': '已下载更新，重新启动应用程序时，将应用更新，点击立即安装',
   };
   const bindEditchange = (downloadaddress: string) => {
